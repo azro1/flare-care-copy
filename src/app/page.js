@@ -102,10 +102,3 @@ export default function Home() {
     </div>
   )
 }
-
-              Start Your Journey
-            </Link>
-          </div>
-    </div>
-  )
-}

@@ -44,18 +44,18 @@ export default function ConfirmationModal({
   if (!isVisible) return null
 
   return (
-    <div 
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+    <div
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in"
       onClick={handleBackdropClick}
     >
-      <div className="bg-white rounded-lg shadow-xl max-w-md w-full transform transition-all">
-        <div className="p-6">
-          <div className="flex items-center mb-4">
+      <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl max-w-md w-full transform transition-all animate-scale-in border border-white/30">
+        <div className="p-8">
+          <div className="flex items-center mb-6">
             <div className={`w-10 h-10 rounded-full flex items-center justify-center mr-3 ${
-              isDestructive ? 'bg-red-100' : 'bg-blue-100'
+              isDestructive ? 'bg-gradient-to-br from-red-100 to-red-200' : 'bg-gradient-to-br from-blue-100 to-blue-200'
             }`}>
               <svg 
-                className={`w-6 h-6 ${isDestructive ? 'text-red-600' : 'text-blue-600'}`} 
+                className={`w-6 h-6 ${isDestructive ? 'text-red-600' : 'text-blue-600'}`}
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -71,28 +71,28 @@ export default function ConfirmationModal({
                 />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3 className="text-xl font-bold text-neutral-900">
               {title}
             </h3>
           </div>
           
-          <p className="text-gray-600 mb-6">
+          <p className="text-neutral-600 mb-8 leading-relaxed">
             {message}
           </p>
 
-          <div className="flex space-x-3 justify-end">
+          <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-end">
             <button
               onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-200"
+              className="px-6 py-3 text-sm font-medium text-neutral-700 bg-white/80 hover:bg-white/90 border border-neutral-200 hover:border-neutral-300 rounded-xl transition-all duration-300 hover:scale-105"
             >
               {cancelText}
             </button>
             <button
               onClick={handleConfirm}
-              className={`px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors duration-200 ${
+              className={`px-6 py-3 text-sm font-medium text-white rounded-xl transition-all duration-300 hover:scale-105 ${
                 isDestructive 
-                  ? 'bg-red-600 hover:bg-red-700' 
-                  : 'bg-blue-600 hover:bg-blue-700'
+                  ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg hover:shadow-xl' 
+                  : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg hover:shadow-xl'
               }`}
             >
               {confirmText}

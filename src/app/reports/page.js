@@ -229,20 +229,20 @@ export default function ReportsPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Health Reports</h1>
-        <p className="text-gray-600">
+    <div className="max-w-6xl mx-auto animate-fade-in-up">
+      <div className="mb-12">
+        <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-4 text-shadow">Health Reports</h1>
+        <p className="text-lg text-neutral-600 max-w-2xl leading-relaxed">
           Generate detailed reports of your health data to share with your healthcare team.
         </p>
       </div>
 
       {/* Date Range Selector */}
-      <div className="card mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">Select Report Period</h2>
-        <div className="grid md:grid-cols-2 gap-4 mb-6">
+      <div className="card mb-8 animate-fade-in-up">
+        <h2 className="text-2xl font-bold gradient-text mb-8">Select Report Period</h2>
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
           <div>
-            <label htmlFor="startDate" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="startDate" className="block text-sm font-semibold text-neutral-700 mb-3">
               Start Date
             </label>
             <input
@@ -254,7 +254,7 @@ export default function ReportsPage() {
             />
           </div>
           <div>
-            <label htmlFor="endDate" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="endDate" className="block text-sm font-semibold text-neutral-700 mb-3">
               End Date
             </label>
             <input
@@ -267,74 +267,84 @@ export default function ReportsPage() {
           </div>
         </div>
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
-          <div className="text-sm text-gray-600 mb-4 sm:mb-0">
+          <div className="text-sm text-neutral-600 mb-4 sm:mb-0 bg-white/50 px-4 py-2 rounded-lg">
             Showing symptoms from {new Date(dateRange.startDate).toLocaleDateString()} to {new Date(dateRange.endDate).toLocaleDateString()}
           </div>
-          <div className="flex space-x-3">
-            <button onClick={exportToPDF} className="btn-primary whitespace-nowrap">
+          <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+            <button onClick={exportToPDF} className="btn-primary whitespace-nowrap inline-flex items-center space-x-2 group">
+              <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span>
               Export PDF
+              </span>
             </button>
-            <button onClick={exportToCSV} className="btn-secondary whitespace-nowrap">
+            <button onClick={exportToCSV} className="btn-secondary whitespace-nowrap inline-flex items-center space-x-2 group">
+              <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span>
               Export CSV
+              </span>
             </button>
           </div>
         </div>
       </div>
 
       {/* Report Results */}
-      <div className="card mb-8">
+      <div className="card mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold text-gray-900">Symptom Report</h2>
+          <h2 className="text-2xl font-bold gradient-text">Symptom Report</h2>
         </div>
         
         {reportData.totalEntries > 0 && (
-          <div className="text-sm text-gray-600 mb-6">
+          <div className="text-sm text-neutral-600 mb-8 bg-white/50 px-4 py-2 rounded-lg inline-block">
             Found {reportData.totalEntries} symptom {reportData.totalEntries === 1 ? 'episode' : 'episodes'} in the selected period
           </div>
         )}
 
         {/* Summary Stats */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-primary-600 mb-2">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="text-center p-6 bg-gradient-to-br from-primary-50/80 to-primary-100/80 rounded-2xl border border-white/30 hover:scale-105 transition-transform duration-300">
+            <div className="text-4xl font-bold gradient-text mb-3">
               {reportData.totalEntries}
             </div>
-            <div className="text-sm text-gray-600">Symptom Episodes</div>
+            <div className="text-sm font-semibold text-neutral-600">Symptom Episodes</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-primary-600 mb-2">
+          <div className="text-center p-6 bg-gradient-to-br from-secondary-50/80 to-secondary-100/80 rounded-2xl border border-white/30 hover:scale-105 transition-transform duration-300">
+            <div className="text-4xl font-bold gradient-text mb-3">
               {reportData.averageSeverity}
             </div>
-            <div className="text-sm text-gray-600">Average Severity</div>
+            <div className="text-sm font-semibold text-neutral-600">Average Severity</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-primary-600 mb-2">
+          <div className="text-center p-6 bg-gradient-to-br from-accent-50/80 to-accent-100/80 rounded-2xl border border-white/30 hover:scale-105 transition-transform duration-300">
+            <div className="text-4xl font-bold gradient-text mb-3">
               {reportData.medications.length}
             </div>
-            <div className="text-sm text-gray-600">Medications</div>
+            <div className="text-sm font-semibold text-neutral-600">Medications</div>
           </div>
         </div>
 
         {/* Severity Trend */}
         {reportData.severityTrend.length > 0 && (
-          <div className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Symptom Episodes</h3>
-            <div className="space-y-2">
+          <div className="mb-12">
+            <h3 className="text-xl font-bold text-neutral-900 mb-6">Symptom Episodes</h3>
+            <div className="space-y-4">
               {reportData.severityTrend.map((entry, index) => (
-                <div key={index} className="flex items-center space-x-4">
-                  <div className="w-32 text-sm text-gray-600">
+                <div key={index} className="flex items-center space-x-6 p-4 bg-white/50 rounded-xl hover:bg-white/70 transition-all duration-300">
+                  <div className="w-40 text-sm font-medium text-neutral-700 bg-white/80 px-3 py-2 rounded-lg">
                     {new Date(entry.date).toLocaleDateString()}
                     {entry.isOngoing ? ' (Ongoing)' : ` - ${new Date(entry.endDate).toLocaleDateString()}`}
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center space-x-2">
-                      <div className="flex-1 bg-gray-200 rounded-full h-2">
+                    <div className="flex items-center space-x-4">
+                      <div className="flex-1 bg-neutral-200 rounded-full h-3 overflow-hidden">
                         <div 
-                          className="bg-primary-600 h-2 rounded-full" 
+                          className="bg-gradient-to-r from-primary-500 to-primary-600 h-3 rounded-full transition-all duration-1000 ease-out" 
                           style={{ width: `${(entry.severity / 10) * 100}%` }}
                         ></div>
                       </div>
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getSeverityColor(entry.severity)}`}>
+                      <span className={`severity-indicator ${getSeverityColor(entry.severity)}`}>
                         {entry.severity}/10
                       </span>
                     </div>
@@ -348,18 +358,18 @@ export default function ReportsPage() {
 
       {/* Medications */}
       {reportData.medications.length > 0 && (
-        <div className="card mb-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Current Medications</h3>
-          <div className="space-y-3">
+        <div className="card mb-8 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+          <h3 className="text-xl font-bold gradient-text mb-6">Current Medications</h3>
+          <div className="space-y-4">
             {reportData.medications.map((med, index) => (
-              <div key={index} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
+              <div key={index} className="flex justify-between items-center py-4 px-4 bg-white/50 rounded-xl hover:bg-white/70 transition-all duration-300 last:border-b-0">
                 <div>
-                  <span className="font-medium text-gray-900">{med.name}</span>
+                  <span className="font-bold text-neutral-900">{med.name}</span>
                   {med.dosage && (
-                    <span className="text-gray-600 ml-2">({med.dosage})</span>
+                    <span className="text-neutral-600 ml-3 bg-white/80 px-2 py-1 rounded text-sm">({med.dosage})</span>
                   )}
                 </div>
-                <span className="text-sm text-gray-500 capitalize">{med.timeOfDay}</span>
+                <span className="text-sm font-medium text-neutral-600 bg-primary-100 px-3 py-1 rounded-full capitalize">{med.timeOfDay}</span>
               </div>
             ))}
           </div>
@@ -368,13 +378,13 @@ export default function ReportsPage() {
 
       {/* Top Foods */}
       {reportData.topFoods.length > 0 && (
-        <div className="card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Most Logged Foods</h3>
-          <div className="space-y-2">
+        <div className="card animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+          <h3 className="text-xl font-bold gradient-text mb-6">Most Logged Foods</h3>
+          <div className="space-y-3">
             {reportData.topFoods.map(([food, count], index) => (
-              <div key={index} className="flex justify-between items-center">
-                <span className="text-gray-900">{food}</span>
-                <span className="text-sm text-gray-500">{count} time{count !== 1 ? 's' : ''}</span>
+              <div key={index} className="flex justify-between items-center py-3 px-4 bg-white/50 rounded-xl hover:bg-white/70 transition-all duration-300">
+                <span className="font-semibold text-neutral-900">{food}</span>
+                <span className="text-sm font-medium text-neutral-600 bg-accent-100 px-3 py-1 rounded-full">{count} time{count !== 1 ? 's' : ''}</span>
               </div>
             ))}
           </div>
@@ -383,17 +393,29 @@ export default function ReportsPage() {
 
       {/* No Data Message */}
       {reportData.totalEntries === 0 && reportData.medications.length === 0 && (
-        <div className="card text-center py-8">
-          <svg className="w-12 h-12 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="card text-center py-16 animate-fade-in-up">
+          <div className="relative mb-8">
+            <svg className="w-20 h-20 mx-auto text-neutral-300 animate-float" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">No Data Available</h3>
-          <p className="text-gray-600 mb-4">
+          </div>
+          <h3 className="text-2xl font-bold text-neutral-900 mb-4">No Data Available</h3>
+          <p className="text-neutral-600 mb-8 max-w-md mx-auto leading-relaxed">
             Start logging symptoms and adding medications to generate meaningful reports.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-3">
-            <a href="/symptoms" className="btn-primary whitespace-nowrap">Log Symptoms</a>
-            <a href="/medications" className="btn-secondary whitespace-nowrap">Add Medications</a>
+          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <a href="/symptoms" className="btn-primary whitespace-nowrap inline-flex items-center space-x-2">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+              <span>Log Symptoms</span>
+            </a>
+            <a href="/medications" className="btn-secondary whitespace-nowrap inline-flex items-center space-x-2">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+              <span>Add Medications</span>
+            </a>
           </div>
         </div>
       )}
